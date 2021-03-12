@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import logo from './logo.svg'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import SignUp from './components/SignUp'
+import WeatherPreview from './components/WeatherPreview'
+
+interface Weather {
+  description: string
+  temperature: string
+  highTemperature: string
+  lowTemperature: string
+  humidity: string
+  iconName: string
+  iconLink: string
+  country: string
+  city: string
+  state: string
+  utcTime: string
 }
 
-export default App;
+export interface WeatherForecast {
+  today: Weather
+  daily: Weather[]
+}
+
+function App() {
+  const [weatherForecast, setWeatherForecast] = useState<WeatherForecast | null>(null)
+  const [userZipCode, setUserZipCode] = useState<number | null>(null)
+  useEffect(() => {
+    fetch('https://j9l4zglte4.execute-api.us-east-1.amazonaws.com/api/ctl/weather')
+      .then(res => res.json())
+      .then(res => setWeatherForecast(res))
+      .catch(error => console.log(error))
+  }, [])
+
+  return (
+    <Main>
+      <SignUp setZipCode={setUserZipCode} />
+      {weatherForecast && <WeatherPreview weatherToday={weatherForecast.today} />}
+      <p>{userZipCode}</p>
+    </Main>
+  )
+}
+
+export default App
+
+const Main = styled.main``
