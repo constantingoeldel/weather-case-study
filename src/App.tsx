@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import logo from './logo.svg'
 
 import SignUp from './components/SignUp'
 import WeatherPreview from './components/WeatherPreview'
