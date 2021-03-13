@@ -1,6 +1,6 @@
 import Analytics from 'analytics'
 // @ts-ignore
-import * as googleAnalytics from '@analytics/google-analytics'
+import googleAnalytics from '@analytics/google-analytics'
 
 export const analyticsConfig = {
   init: Analytics({

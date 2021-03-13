@@ -33,7 +33,13 @@ function App() {
       .catch(error => console.log(error))
   }, [])
 
-  weatherForecast && console.log(document.querySelector('favicon'))
+  useEffect(() => {
+    weatherForecast &&
+      document
+        .querySelector<HTMLLinkElement>('.favicon')
+        ?.setAttribute('href', weatherForecast.today.iconLink)
+  }, [weatherForecast])
+
   return (
     <Main>
       <SignUp setZipCode={setUserZipCode} />
