@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
+import { analytics } from '../index'
 
 export default function SignUp({
   setZipCode,
@@ -12,6 +13,11 @@ export default function SignUp({
     <Form
       onSubmit={event => {
         event.preventDefault()
+        analytics.track('signUp', {
+          category: 'Conversion',
+          label: 'signUpButton',
+          value: 1,
+        })
         setZipCode(zipCode)
       }}>
       <ZipCodeLabel htmlFor='ZipCode'>Please enter your ZipCode</ZipCodeLabel>

@@ -33,6 +33,7 @@ function App() {
       .catch(error => console.log(error))
   }, [])
 
+  weatherForecast && console.log(document.querySelector('favicon'))
   return (
     <Main>
       <SignUp setZipCode={setUserZipCode} />

@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { analyticsConfig } from './analytics'
+
+export const analytics = analyticsConfig.init
 
 ReactDOM.render(
   <React.StrictMode>
